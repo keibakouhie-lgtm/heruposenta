@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トレぴ ヘルプセンター</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1f6fe5; --blue-d:#1556c4; --blue-l:#e8f1ff;
+  --yellow:#ffc81e; --yellow-l:#fff6d6;
+  --pink:#ff4f8b; --pink-l:#ffe8f0;
+  --navy:#16215a; --ink:#1d2433; --sub:#5b6478; --line:#e3e7ef; --bg:#f6f8fc;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:84px}
+body{margin:0;font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--navy);font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:17px;white-space:nowrap}
+.brand:hover{text-decoration:none}
+.brand img{height:48px;width:auto}
+.brand small{font-size:12px;color:var(--sub);font-family:"Noto Sans JP";font-weight:500;border-left:1px solid var(--line);padding-left:10px}
+.hsearch{margin-left:auto;position:relative;width:min(360px,45vw);display:none}
+.hsearch.on{display:block}
+.hsearch input{width:100%;height:40px;border:1px solid var(--line);border-radius:999px;padding:0 16px 0 38px;font:inherit;font-size:14px;background:var(--bg)}
+.hsearch svg{position:absolute;left:13px;top:11px;color:var(--sub)}
+
+/* hero */
+.hero{position:relative;z-index:5;background:linear-gradient(135deg,#1f6fe5 0%,#2b86ff 60%,#3d9bff 100%);color:#fff;padding:52px 0 64px}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1.4px,transparent 1.6px);background-size:14px 14px;mask-image:linear-gradient(100deg,transparent 35%,#000 90%);-webkit-mask-image:linear-gradient(100deg,transparent 35%,#000 90%)}
+.hero .bgc{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero .burst{position:absolute;right:-30px;top:-20px;width:300px}
+.hero .wrap{position:relative}
+.hero h1{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:clamp(26px,4.4vw,40px);margin:0 0 6px;letter-spacing:.02em;text-shadow:0 3px 0 rgba(22,33,90,.35)}
+.hero h1 span{color:var(--yellow)}
+.hero p{margin:0 0 22px;opacity:.92}
+.bigsearch{position:relative;max-width:640px}
+.bigsearch input{width:100%;height:58px;border:3px solid var(--navy);border-radius:16px;padding:0 20px 0 54px;font:inherit;font-size:16px;color:var(--ink);box-shadow:0 5px 0 var(--navy);outline:none}
+.bigsearch input:focus{border-color:var(--yellow)}
+.bigsearch svg{position:absolute;left:19px;top:19px;color:var(--blue)}
+.dd{position:absolute;left:0;right:0;top:calc(100% + 10px);background:#fff;border-radius:12px;box-shadow:0 12px 32px rgba(22,33,90,.2);overflow:hidden;z-index:30;display:none;color:var(--ink)}
+.dd.on{display:block}
+.dd a{display:block;padding:11px 16px;border-bottom:1px solid var(--line);color:var(--ink)}
+.dd a:hover,.dd a.act{background:var(--blue-l);text-decoration:none}
+.dd b{display:block;font-size:14px}
+.dd span{display:block;font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dd .none{padding:14px 16px;font-size:14px;color:var(--sub)}
+mark{background:var(--yellow-l);color:inherit;border-radius:3px;padding:0 1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;font-size:13px}
+.chips button{border:0;background:rgba(255,255,255,.18);color:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.chips button:hover{background:rgba(255,255,255,.3)}
+
+/* sections */
+main{padding:36px 0 64px}
+.sec{margin-bottom:44px}
+.sec h2.ttl{font-family:"M PLUS Rounded 1c",sans-serif;font-size:21px;margin:0 0 16px;color:var(--navy);display:flex;align-items:center;gap:10px}
+.sec h2.ttl:before{content:"";width:8px;height:22px;border-radius:4px;background:linear-gradient(var(--yellow) 50%,var(--pink) 50%)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;color:var(--ink);display:block;transition:transform .12s,box-shadow .12s,border-color .12s}
+.card:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 8px 20px rgba(22,33,90,.08);border-color:#c9d6f0}
+.fcard{display:flex;gap:14px;align-items:flex-start}
+.fcard .no{flex:none;width:38px;height:38px;border-radius:10px;background:var(--blue-l);color:var(--blue);font-weight:700;display:grid;place-items:center;font-size:14px}
+.fcard b{display:block;font-size:15px;line-height:1.5}
+.fcard span{font-size:12.5px;color:var(--sub)}
+.ccard{display:flex;gap:16px;align-items:center;padding:20px}
+.ccard .ic{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center}
+.ccard b{display:block;font-size:16px}
+.ccard p{margin:2px 0 0;font-size:13px;color:var(--sub);line-height:1.6}
+.ccard .cnt{margin-left:auto;font-size:12px;color:var(--sub);white-space:nowrap}
+.ccard.soon{opacity:.65}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--line);color:var(--sub);vertical-align:2px}
+.pill.new{background:var(--pink);color:#fff}
+
+/* tool */
+.tool{background:#fff;border:2px solid var(--navy);border-radius:18px;box-shadow:0 5px 0 var(--navy);padding:22px 24px}
+.tool h3{margin:0 0 4px;font-family:"M PLUS Rounded 1c",sans-serif;color:var(--navy);font-size:19px}
+.tool .lead{margin:0 0 16px;font-size:13px;color:var(--sub)}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:14px}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.form label{font-size:13px;font-weight:700;color:var(--navy);display:block}
+.form input,.form select{margin-top:5px;width:100%;height:44px;border:1px solid #cbd3e1;border-radius:10px;padding:0 12px;font:inherit;font-size:15px;background:#fff}
+.form input:focus,.form select:focus{outline:2px solid var(--blue);border-color:transparent}
+.result{margin-top:18px;background:var(--yellow-l);border-radius:12px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline}
+.result .big{font-size:30px;font-weight:700;color:var(--navy);font-family:"M PLUS Rounded 1c",sans-serif}
+.result .f{font-size:13px;color:var(--sub);flex-basis:100%}
+.warn{margin-top:10px;font-size:13px;color:#b4235a;background:var(--pink-l);border-radius:10px;padding:8px 12px;display:none}
+.warn.on{display:block}
+
+/* article */
+.crumb{font-size:13px;color:var(--sub);margin-bottom:14px}
+.crumb a{color:var(--sub)}
+.crumb i{font-style:normal;margin:0 6px;opacity:.5}
+.layout>*{min-width:0}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr) 220px;gap:28px;align-items:start}
+.side{position:sticky;top:84px;font-size:14px;max-height:calc(100vh - 100px);overflow:auto}
+.side h4{font-size:12px;color:var(--sub);margin:0 0 8px;letter-spacing:.05em}
+.side a{display:block;color:var(--ink);padding:6px 10px;border-radius:8px;line-height:1.5}
+.side a:hover{background:#fff;text-decoration:none}
+.side a.on{background:var(--blue-l);color:var(--blue);font-weight:700}
+.toc a{border-left:2px solid var(--line);border-radius:0;padding:4px 12px;color:var(--sub);font-size:13px}
+.toc a.on{border-color:var(--blue);background:none;color:var(--blue)}
+article.doc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px 40px 40px}
+article.doc h1{font-family:"M PLUS Rounded 1c",sans-serif;font-size:clamp(23px,3.4vw,30px);line-height:1.4;margin:0 0 8px;color:var(--navy)}
+.meta{font-size:12.5px;color:var(--sub);display:flex;flex-wrap:wrap;gap:4px 16px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.body h2{font-size:19px;margin:34px 0 12px;padding:8px 14px;background:var(--blue-l);border-left:5px solid var(--blue);border-radius:6px;color:var(--navy);line-height:1.5}
+.body h3{font-size:16px;margin:24px 0 8px}
+.body p{margin:12px 0}
+.body p.step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
+.body .num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center;margin-top:1px}
+.note{background:#fff4d6;border:1px solid #f3cf63;border-radius:12px;padding:12px 16px;margin:16px 0 4px;font-size:13.5px;line-height:1.7}
+.note b{display:block;color:#8a5a00;margin-bottom:2px}
+.note a{font-weight:700}
+.body h3.stp{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;margin:18px 0 6px;line-height:1.6}
+.body h3.stp .num{margin-top:0}
+.body ul,.body ol{padding-left:1.4em}
+.body li{margin:4px 0}
+.body blockquote{margin:6px 0 6px 0;padding:6px 12px;border-left:3px solid var(--line);color:#3a4256;background:#fafbfe;border-radius:0 8px 8px 0}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;margin:6px 0;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:#fff;line-height:1.6}
+.chk:hover{border-color:#b9c8e6}
+.chk input{flex:none;width:22px;height:22px;margin:0;accent-color:#0f9d58;cursor:pointer}
+.chk.done{background:#eef9f2;border-color:#bfe6cc;color:#5b6478}
+.chk.done span{text-decoration:line-through}
+.chkbar{position:sticky;top:72px;z-index:4;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:14px 0;font-size:14px;box-shadow:0 4px 12px rgba(22,33,90,.06)}
+.chkbar .bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.chkbar .bar i{display:block;height:100%;background:#0f9d58;width:0;transition:width .2s}
+.chkbar button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:13px}
+.body p.cap{font-size:13.5px;color:var(--sub);background:var(--bg);border-radius:10px;padding:10px 14px;margin-top:-4px}
+.body .tag{display:inline-block;font-size:11px;font-weight:700;background:var(--navy);color:#fff;border-radius:4px;padding:0 7px;margin-right:8px;vertical-align:1px}
+.body figure.photo{margin:20px 0 8px}
+.body figure.photo img{max-width:100%;max-height:440px;border-radius:12px;border:1px solid var(--line);display:block;cursor:zoom-in;background:var(--bg)}
+.tbl{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px}
+.body table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.65}
+.body th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:700;min-width:5em}
+.body th strong{font-weight:700}
+.body td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+.body tr:nth-child(even) td{background:#fafbfe}
+.body td:first-child{font-weight:700;color:var(--navy);min-width:5em}
+.body a{word-break:break-all}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.pager a{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;color:var(--ink);font-size:14px}
+.pager a:hover{text-decoration:none;border-color:var(--blue)}
+.pager small{display:block;color:var(--sub);font-size:12px}
+.pager .nx{text-align:right;grid-column:2}
+.fb{margin-top:22px;text-align:center;font-size:14px;color:var(--sub)}
+
+/* category page */
+.chead{display:flex;gap:18px;align-items:center;margin-bottom:22px}
+.chead h1{font-family:"M PLUS Rounded 1c",sans-serif;margin:0;color:var(--navy);font-size:clamp(22px,3.4vw,28px);line-height:1.4}
+.chead p{margin:2px 0 0;color:var(--sub);font-size:14px}
+.alist{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.alist a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);color:var(--ink)}
+.alist a:last-child{border-bottom:0}
+.alist a:hover{background:var(--blue-l);text-decoration:none}
+.alist .no{font-size:12px;color:var(--blue);font-weight:700;min-width:34px}
+.alist b{font-weight:500}
+.alist span.ex{display:block;font-size:12.5px;color:var(--sub);line-height:1.5;margin-top:2px}
+.alist .arr{margin-left:auto;color:var(--sub)}
+.empty{background:#fff;border:2px dashed var(--line);border-radius:var(--r);padding:40px 20px;text-align:center;color:var(--sub)}
+
+footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;font-size:12.5px;color:var(--sub)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(10,15,40,.88);display:none;place-items:center;z-index:50;padding:20px;cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-width:100%;max-height:92vh;border-radius:10px}
+
+@media (max-width:1060px){.layout{grid-template-columns:220px minmax(0,1fr)}.toc{display:none}}
+@media (max-width:800px){
+  .layout{grid-template-columns:1fr}
+  .side.nav{display:none}
+  article.doc{padding:22px 18px 28px;border-radius:14px}
+  .brand small{display:none}
+  .hero{padding:34px 0 44px}
+  .hero .burst{width:180px;opacity:.5}
+  .body td:first-child{white-space:normal}
+}
+@media (max-width:560px){.hsearch{width:auto;flex:1}.brand span.t{display:none}}
+.body img{max-width:100%;height:auto;max-height:520px;object-fit:contain;display:block;margin:8px 0;border-radius:12px;border:1px solid var(--line);background:var(--bg);cursor:zoom-in}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="#home"><img src="{{LOGO}}" alt="トレぴ"><span class="t">ヘルプセンター</span><small>スタッフ用マニュアル</small></a>
+    <div class="hsearch" id="hsearch">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="hq" placeholder="マニュアルを検索" autocomplete="off">
+      <div class="dd" id="hdd"></div>
+    </div>
+  </div>
+</header>
+<div id="app"><p style="padding:40px;text-align:center;color:#5b6478">読み込み中…</p></div>
+<script>window.addEventListener("error",function(e){var a=document.getElementById("app");if(a)a.insertAdjacentHTML("afterbegin","<p style=\"margin:20px;padding:12px;background:#ffe8f0;border-radius:8px\">表示エラー: "+(e.message||"")+"</p>");});</script>
+<footer><div class="wrap"><span>© トレぴ トレーディングカードショップ　スタッフ用ヘルプセンター</span><span id="fupd"></span></div></footer>
+<div class="lb" id="lb"><img alt=""></div>
+
+<script>
+window.ARTICLES = /*ARTICLES*/;
+</script>
+<script>
+// ===== カテゴリ定義（新しいマニュアルはここと articles.js に追加） =====
+const CATS = [
+  {id:'flow',   name:'買取の流れ・接客',       desc:'受付・声かけ・交渉・支払い・本人確認の手順', color:'#1f6fe5', bg:'#e8f1ff', icon:'chat'},
+  {id:'rank',   name:'状態ランク査定基準',     desc:'素体・PSA・BOXのランク判定と減額率',         color:'#e8a400', bg:'#fff6d6', icon:'star'},
+  {id:'price',  name:'相場・価格計算',         desc:'本部買取表・相場サイトの使い方と計算式',     color:'#14a37f', bg:'#e2f7f0', icon:'yen'},
+  {id:'shingan',name:'真贋鑑別',               desc:'正規見本との照合、ブラックライト、再シュリンク事例', color:'#ff4f8b', bg:'#ffe8f0', icon:'search'},
+  {id:'after',  name:'高額査定・買取後の対応', desc:'承認フロー、商品管理、破損・偽物発覚時の対応', color:'#7a4fe0', bg:'#efe9ff', icon:'shield'},
+  {id:'forms',  name:'記録票・付録',           desc:'査定記録票、導入時の確認欄、更新履歴',       color:'#16215a', bg:'#e7e9f3', icon:'doc'},
+  {id:'daily',  name:'開店・閉店チェックリスト', desc:'毎日のオープン準備と閉店作業。タップしてチェックできます', color:'#0f9d58', bg:'#e3f6ea', icon:'check'},
+  {id:'oripa',  name:'オリパ作成・管理',       desc:'企画・封入・引換券・当たり残数の管理と日次照合', color:'#d4447a', bg:'#ffe8f1', icon:'gift'},
+  {id:'pos',    name:'POSレジ操作（RECORE）', desc:'レジ開け・販売・返品・買取・TAYS・ラベル・棚卸し・レジ締め', color:'#0b7a75', bg:'#ddf3f1', icon:'pos'},
+  {id:'recore', name:'RECORE操作・店舗実務',   desc:'買取登録・カタログ・ロケーション・販売・棚卸し・インカム', color:'#0e8fb0', bg:'#e0f4f9', icon:'pos'},
+  {id:'taikai', name:'大会運営・プレイスペース', desc:'公認大会の進行、ジャッジ対応、利用規約、賭博行為への対応', color:'#e2621b', bg:'#ffeee3', icon:'trophy'},
+  {id:'bouhan', name:'防犯・安全管理',         desc:'開閉店、金庫、すり替え防止、強盗対応、110番、点検', color:'#c62f4b', bg:'#ffe6ea', icon:'lock'},
+  {id:'unei',   name:'店舗運営・コンプライアンス', desc:'本人確認、盗品疑い、状態判定トラブル、店内トレード禁止', color:'#3b5bdb', bg:'#e7ecff', icon:'users'},
+];
+const ICONS = {
+  chat:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/>',
+  star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+  yen:'<path d="m7 4 5 7 5-7M12 11v9M8 13h8M8 16.5h8"/>',
+  search:'<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/><path d="m8.5 11 1.8 1.8 3.4-3.6"/>',
+  shield:'<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="M12 8v5M12 16v.5"/>',
+  doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15.5h6"/>',
+  pos:'<rect x="4" y="4" width="16" height="11" rx="2"/><path d="M8 19h8M12 15v4"/>',
+  check:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="m8 12 3 3 5-6"/>',
+  gift:'<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9c-1.5-4-6-4-5.5-1.5S12 9 12 9zM12 9c1.5-4 6-4 5.5-1.5S12 9 12 9z"/>',
+  trophy:'<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7M10 17h4"/>',
+  lock:'<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2.5"/>',
+  users:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6M17 13.6a5.5 5.5 0 0 1 3.5 5.4"/>',
+};
+const icon = (k, c, s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
+
+const A = window.ARTICLES || [];
+const byCat = id => A.filter(a => a.cat === id);
+const cat = id => CATS.find(c => c.id === id);
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmtDate = d => { const [y,m,dd] = d.split('-'); return `${y}年${+m}月${+dd}日`; };
+const excerpt = (a, n=60) => a.text.slice(0, n) + (a.text.length > n ? '…' : '');
+const app = document.getElementById('app');
+
+// ===== search =====
+function search(q){
+  const terms = q.trim().toLowerCase().split(/[\s　]+/).filter(Boolean);
+  if (!terms.length) return [];
+  return A.map(a => {
+    const t = a.title.toLowerCase(), b = a.text.toLowerCase();
+    let score = 0;
+    for (const w of terms){
+      if (!t.includes(w) && !b.includes(w)) return null;
+      if (t.includes(w)) score += 10;
+      score += Math.min(b.split(w).length - 1, 8);
+    }
+    const i = b.indexOf(terms[0]);
+    const from = Math.max(0, i - 24);
+    let snip = (from ? '…' : '') + a.text.slice(from, from + 90) + '…';
+    return {a, score, snip};
+  }).filter(Boolean).sort((x,y) => y.score - x.score);
+}
+function hl(s, q){
+  let out = esc(s);
+  q.trim().split(/[\s　]+/).filter(Boolean).forEach(w => {
+    out = out.replace(new RegExp(esc(w).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'), m => `<mark>${m}</mark>`);
+  });
+  return out;
+}
+function bindSearch(input, dd){
+  let act = -1;
+  const render = () => {
+    const q = input.value; act = -1;
+    if (!q.trim()){ dd.classList.remove('on'); return; }
+    const r = search(q).slice(0, 7);
+    dd.innerHTML = r.length ? r.map(x => `<a href="#a-${x.a.id}"><b>${hl(x.a.title,q)}</b><span>${hl(x.snip,q)}</span></a>`).join('')
+      + `<a href="#search" data-all="1"><span>「${esc(q)}」の検索結果をすべて見る →</span></a>`
+      : `<div class="none">「${esc(q)}」に一致するマニュアルはありません</div>`;
+    dd.classList.add('on');
+    dd.querySelectorAll('a').forEach(el => el.addEventListener('mousedown', e => { if (el.dataset.all) lastQuery = q; }));
+  };
+  input.addEventListener('input', render);
+  input.addEventListener('focus', render);
+  input.addEventListener('blur', () => setTimeout(() => dd.classList.remove('on'), 150));
+  input.addEventListener('keydown', e => {
+    const items = [...dd.querySelectorAll('a')];
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault(); if (!items.length) return;
+      act = (act + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+      items.forEach((el,i) => el.classList.toggle('act', i === act));
+    } else if (e.key === 'Enter'){
+      e.preventDefault();
+      if (act >= 0 && items[act]) { if (items[act].dataset.all) lastQuery = input.value; location.hash = items[act].getAttribute('href').slice(1); }
+      else if (input.value.trim()) { lastQuery = input.value; location.hash = 'search'; if (location.hash === '#search') route(); }
+      dd.classList.remove('on'); input.blur();
+    }
+  });
+}
+let lastQuery = '';
+
+// ===== views =====
+function viewHome(){
+  const feat = A.filter(a => a.featured);
+  const seen = new Set(); const recent = A.filter(a => !seen.has(a.source) && seen.add(a.source));
+  app.innerHTML = `
+  <section class="hero">
+    <div class="bgc"><svg class="burst" viewBox="0 0 200 200" aria-hidden="true"><g fill="#ffc81e"><path d="M120 10 128 60 160 20 140 70 195 55 148 88 200 110 145 105 170 150 128 115 120 170 108 118 70 150 95 105 40 110 92 88 45 55 100 70 82 20 112 60z" opacity=".6"/></g><g fill="#ff4f8b"><path d="m40 30 6 14 15 2-11 10 3 15-13-8-13 8 3-15L19 46l15-2z" opacity=".6"/></g></svg></div>
+    <div class="wrap">
+      <h1>トレぴ <span>ヘルプセンター</span></h1>
+      <p>開店・閉店、買取・査定、POSレジ（RECORE）、オリパ、大会運営、防犯のマニュアルをここで調べられます。</p>
+      <div class="bigsearch">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="q" placeholder="例：PSA ケース、棚卸、ペナルティ、110番" autocomplete="off">
+        <div class="dd" id="dd"></div>
+      </div>
+      <div class="chips">${['閉店','レジ開け','レジ締め','返品','オリパ','引換券','白丸シール','18歳未満','棚卸','ジャッジ','再シュリンク'].map(w => `<button data-w="${w}">${w}</button>`).join('')}</div>
+    </div>
+  </section>
+  <main><div class="wrap">
+    <section class="sec">
+      <h2 class="ttl">よく見られるガイド</h2>
+      <div class="grid g3">${feat.map(a => `<a class="card fcard" href="#a-${a.id}"><span class="no">${a.no === '付録' ? '付' : a.no === '0' ? '★' : a.no}</span><span><b>${esc(a.title)}</b><span>${esc(cat(a.cat).name)}</span></span></a>`).join('')}</div>
+    </section>
+    <section class="sec">
+      <h2 class="ttl">カテゴリから探す</h2>
+      <div class="grid g3">${CATS.map(c => { const n = byCat(c.id).length; return `
+        <a class="card ccard ${n ? '' : 'soon'}" href="#cat-${c.id}">
+          <span class="ic" style="background:${c.bg}">${icon(c.icon, c.color)}</span>
+          <span><b>${c.name}</b><p>${c.desc}</p></span>
+          <span class="cnt">${n ? n + '件' : '<span class="pill">準備中</span>'}</span>
+        </a>`; }).join('')}</div>
+    </section>
+    <section class="sec" id="calc-sec">
+      ${calcHTML()}
+    </section>
+    <section class="sec">
+      <h2 class="ttl">収録マニュアル</h2>
+      <div class="alist">${recent.map(a => `<a href="#a-${a.id}"><span class="no">${fmtDate(a.updated).replace(/^\d+年/,'')}</span><span><b>${esc(a.source)}</b><span class="ex">${A.filter(x => x.source === a.source).length}記事・${esc(cat(a.cat).name)}など</span></span><span class="arr">›</span></a>`).join('')}</div>
+    </section>
+  </div></main>`;
+  const q = document.getElementById('q');
+  bindSearch(q, document.getElementById('dd'));
+  document.querySelectorAll('.chips button').forEach(b => b.onclick = () => { q.value = b.dataset.w; q.focus(); q.dispatchEvent(new Event('input')); });
+  bindCalc();
+}
+
+function viewCat(id){
+  const c = cat(id); if (!c) return viewHome();
+  const list = byCat(id);
+  app.innerHTML = `<main><div class="wrap">
+    <div class="crumb"><a href="#home">ホーム</a><i>›</i>${c.name}</div>
+    <div class="chead"><span class="ic" style="width:60px;height:60px;border-radius:16px;display:grid;place-items:center;background:${c.bg}">${icon(c.icon, c.color, 30)}</span>
+      <div><h1>${c.name}</h1><p>${c.desc}${list.length ? `・${list.length}件の記事` : ''}</p></div></div>
+    ${list.length ? `<div class="alist">${list.map(a => `<a href="#a-${a.id}"><span class="no">${a.no === '0' ? '★' : a.no}</span><span><b>${esc(a.title)}</b><span class="ex">${esc(excerpt(a, 70))}</span></span><span class="arr">›</span></a>`).join('')}</div>`
+      : `<div class="empty"><b>このカテゴリのマニュアルは準備中です</b><br>追加され次第ここに表示されます。</div>`}
+  </div></main>`;
+}
+
+function viewArticle(id){
+  const a = A.find(x => x.id === id); if (!a) return viewHome();
+  const c = cat(a.cat), sib = byCat(a.cat), i = sib.indexOf(a);
+  const prev = sib[i-1], next = sib[i+1];
+  app.innerHTML = `<main><div class="wrap">
+    <div class="crumb"><a href="#home">ホーム</a><i>›</i><a href="#cat-${c.id}">${c.name}</a><i>›</i>${esc(a.title)}</div>
+    <div class="layout">
+      <nav class="side nav"><h4>${c.name}</h4>${sib.map(s => `<a href="#a-${s.id}" class="${s===a?'on':''}">${esc(s.title)}</a>`).join('')}</nav>
+      <div>
+        <article class="doc">
+          <h1>${esc(a.title)}</h1>
+          <div class="meta"><span>最終更新：${fmtDate(a.updated)}</span><span>出典：${esc(a.source)}（${esc(/^\d+$/.test(a.chap) ? '第' + a.chap + '章' : a.chap)}）</span></div>
+          ${(a.notes || []).map(n => `<div class="note"><b>⚠ 他のマニュアルと内容が異なります（本部確認中）</b>${esc(n.msg)}<br>比較：${n.links.map(id => { const o = A.find(x => x.id === id); return `<a href="#a-${id}">${esc(o.title)}（${esc(o.source.replace(/（.*$/, ''))}）</a>`; }).join('　')}</div>`).join('')}
+          <div class="body">${a.html}</div>
+          ${a.id === 'price-pos-souba' ? '<div style="margin-top:34px"></div>' + calcHTML() : ''}
+        </article>
+        <div class="pager">${prev ? `<a href="#a-${prev.id}"><small>‹ 前の記事</small>${esc(prev.title)}</a>` : ''}${next ? `<a class="nx" href="#a-${next.id}"><small>次の記事 ›</small>${esc(next.title)}</a>` : ''}</div>
+      </div>
+      <nav class="side toc" id="toc"></nav>
+    </div>
+  </div></main>`;
+  // TOC
+  const hs = [...app.querySelectorAll('.body h2')];
+  hs.forEach((h,k) => h.id = 's' + (k+1));
+  const toc = document.getElementById('toc');
+  toc.innerHTML = hs.length ? '<h4>この記事の目次</h4>' + hs.map(h => `<a data-s="${h.id}">${esc(h.textContent)}</a>`).join('') : '';
+  toc.querySelectorAll('a').forEach(l => l.onclick = () => document.getElementById(l.dataset.s).scrollIntoView({behavior:'smooth'}));
+  const spy = () => { let cur = hs[0]; hs.forEach(h => { if (h.getBoundingClientRect().top < 120) cur = h; }); toc.querySelectorAll('a').forEach(l => l.classList.toggle('on', cur && l.dataset.s === cur.id)); };
+  window.onscroll = spy; spy();
+  const boxes = [...app.querySelectorAll('.chk input')];
+  if (boxes.length){
+    const key = 'trepi-chk-' + a.id + '-' + new Date().toISOString().slice(0,10);
+    let saved = []; try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) {}
+    const bar = document.createElement('div'); bar.className = 'chkbar';
+    bar.innerHTML = '<b id="chkn"></b><span class="bar"><i id="chkb"></i></span><button type="button" id="chkr">リセット</button>';
+    app.querySelector('.body').prepend(bar);
+    const upd = () => {
+      const n = boxes.filter(b => b.checked).length;
+      boxes.forEach(b => b.closest('.chk').classList.toggle('done', b.checked));
+      document.getElementById('chkn').textContent = `${n} / ${boxes.length} 完了`;
+      document.getElementById('chkb').style.width = (n / boxes.length * 100) + '%';
+      try { localStorage.setItem(key, JSON.stringify(boxes.map(b => b.checked))); } catch(e) {}
+    };
+    boxes.forEach((b,k) => { b.checked = !!saved[k]; b.onchange = upd; });
+    document.getElementById('chkr').onclick = () => { boxes.forEach(b => b.checked = false); upd(); };
+    upd();
+  }
+  app.querySelectorAll('.body img').forEach(im => im.onclick = () => { const lb = document.getElementById('lb'); lb.querySelector('img').src = im.src; lb.classList.add('on'); });
+  if (a.id === 'price-pos-souba') bindCalc();
+}
+
+function viewSearch(){
+  const q = lastQuery;
+  const r = search(q);
+  app.innerHTML = `<main><div class="wrap">
+    <div class="crumb"><a href="#home">ホーム</a><i>›</i>検索結果</div>
+    <div class="chead"><div><h1>「${esc(q)}」の検索結果</h1><p>${r.length}件の記事が見つかりました</p></div></div>
+    ${r.length ? `<div class="alist">${r.map(x => `<a href="#a-${x.a.id}"><span class="no">${x.a.no}</span><span><b>${hl(x.a.title,q)}</b><span class="ex">${hl(x.snip,q)}</span></span><span class="arr">›</span></a>`).join('')}</div>`
+      : `<div class="empty">一致するマニュアルがありません。別のキーワードで検索してください。</div>`}
+  </div></main>`;
+}
+
+// ===== 計算ツール（第7章・第1章の計算ルール） =====
+function calcHTML(){
+  return `<div class="tool" id="calc">
+    <h3>買取額かんたん計算</h3>
+    <p class="lead">第7章の計算式：美品基準額 ×（1−取引間隔の減額）×（1−状態減額）→ 最後に100円未満切り捨て</p>
+    <div class="tabs" id="ctabs"><button data-t="sotai" class="on">素体</button><button data-t="psa">PSA10</button><button data-t="box">BOX</button><button data-t="nego">交渉の増額上限</button></div>
+    <div id="cbody"></div>
+  </div>`;
+}
+const RANKS = {
+  sotai:[['美品',0],['A',5],['B',15],['C',30],['D（例外・責任者承認）',50]],
+  psa:[['美品',0],['A（擦れ1か所）',0],['A（擦れ複数）',3],['B',5],['C（カード見やすい）',10],['C（確認しにくい）',20],['D 小さな欠け（責任者確認）',30],['D ひび・割れ（責任者確認）',40]],
+  box:[['美品',0],['A',5],['B',10],['C（1か所）',15],['C（複数）',20]],
+};
+const GAPS = [['7日以内',0],['8〜14日',2],['15〜30日',5],['31日以上（責任者確認）',8],['最新成約が31日以上前（責任者・本部確認）',20]];
+function bindCalc(){
+  const root = document.getElementById('calc'); if (!root) return;
+  const body = root.querySelector('#cbody');
+  let tab = 'sotai';
+  const yen = n => Math.round(n).toLocaleString('ja-JP') + '円';
+  const draw = () => {
+    root.querySelectorAll('#ctabs button').forEach(b => b.classList.toggle('on', b.dataset.t === tab));
+    if (tab === 'nego'){
+      body.innerHTML = `<div class="form"><label>当初査定額（円）<input id="n0" type="number" inputmode="numeric" min="0" placeholder="10000"></label>
+        <label>責任者の承認額（任意・円）<input id="n1" type="number" inputmode="numeric" min="0" placeholder="未入力なら3%上限のみ"></label></div>
+        <div class="result" id="cres"></div>`;
+    } else {
+      const base = tab === 'sotai' ? '美品基準額（本部買取表／未掲載はカードラッシュ美品販売価格×80%）'
+                 : tab === 'psa' ? '美品基準額（本部買取表／未掲載はスニダン最新成約額×90%）' : '美品基準額（本部買取表）';
+      body.innerHTML = `<div class="form">
+        <label>${base}<input id="c0" type="number" inputmode="numeric" min="0" placeholder="10000"></label>
+        ${tab !== 'box' ? `<label>${'取引間隔（直近3件の長い方）'}<select id="c1">${GAPS.map(g => `<option value="${g[1]}">${g[0]}：${g[1]}%</option>`).join('')}</select></label>` : ''}
+        <label>状態ランク<select id="c2">${RANKS[tab].map(r => `<option value="${r[1]}">${r[0]}：${r[1]}%</option>`).join('')}</select></label>
+      </div><div class="result" id="cres"></div><div class="warn" id="cwarn"></div>`;
+    }
+    body.querySelectorAll('input,select').forEach(el => el.addEventListener('input', calc));
+    calc();
+  };
+  const calc = () => {
+    const res = body.querySelector('#cres');
+    if (tab === 'nego'){
+      const n0 = +body.querySelector('#n0').value || 0, n1 = +body.querySelector('#n1').value || 0;
+      const cap = n0 * 1.03, lim = n1 ? Math.min(cap, n1) : cap;
+      const fin = Math.floor(lim / 100) * 100;
+      res.innerHTML = n0 ? `<span>提示できる上限</span><span class="big">${yen(fin)}</span><span class="f">${yen(n0)} × 1.03 = ${yen(cap)}${n1 ? `／承認額 ${yen(n1)} と低い方` : ''} → 100円未満切り捨て。増額は責任者承認後のみ提示。</span>`
+        : `<span class="f">当初査定額を入れると、3%上限（100円未満切り捨て）を計算します。</span>`;
+      return;
+    }
+    const b = +body.querySelector('#c0').value || 0;
+    const g = tab !== 'box' ? +body.querySelector('#c1').value : 0;
+    const s = +body.querySelector('#c2').value;
+    const raw = b * (1 - g/100) * (1 - s/100);
+    const fin = Math.floor(raw / 100) * 100;
+    res.innerHTML = b ? `<span>提示候補額</span><span class="big">${yen(fin)}</span><span class="f">${yen(b)}${tab !== 'box' ? ` ×（1−${g}%）` : ''} ×（1−${s}%）= ${raw.toLocaleString('ja-JP',{maximumFractionDigits:1})}円 → 100円未満切り捨て</span>`
+      : `<span class="f">美品基準額を入れると計算します。</span>`;
+    const w = [];
+    if (g >= 8) w.push('取引間隔31日以上・最新成約が31日以上前は責任者確認（20%は本部確認後に提示、自動成約しない）。');
+    if (s >= 30 && tab === 'psa') w.push('PSAケースDは責任者の個別承認が必要です。');
+    if (s >= 50 && tab === 'sotai') w.push('素体Dは原則買取不可。例外は責任者承認（第11章）。');
+    if (fin >= 300000) w.push('1枚30万円以上：ダブルチェック＋店長承認（不在時は本部）が必要です。');
+    if (fin >= 500000) w.push('1点50万円以上：支払い方法と支払予定日を本部へ連絡（LINE報告→電話）。');
+    const wb = body.querySelector('#cwarn'); wb.innerHTML = w.map(x => '⚠ ' + x).join('<br>'); wb.classList.toggle('on', !!w.length);
+  };
+  root.querySelectorAll('#ctabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; draw(); });
+  draw();
+}
+
+// ===== router =====
+function route(){
+  const h = location.hash.slice(1) || 'home';
+  window.onscroll = null;
+  document.getElementById('hsearch').classList.toggle('on', h !== 'home');
+  if (h.startsWith('cat-')) viewCat(h.slice(4));
+  else if (h.startsWith('a-')) viewArticle(h.slice(2));
+  else if (h === 'search') viewSearch();
+  else viewHome();
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+bindSearch(document.getElementById('hq'), document.getElementById('hdd'));
+document.getElementById('lb').onclick = e => e.currentTarget.classList.remove('on');
+const latest = A.map(a => a.updated).sort().pop();
+if (latest) document.getElementById('fupd').textContent = '最終更新 ' + fmtDate(latest);
+try{ route(); }catch(e){ app.innerHTML='<p style="padding:40px">表示エラー: '+e.message+'</p>'; }
+</script>
+</body>
+</html>

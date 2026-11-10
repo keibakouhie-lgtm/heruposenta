@@ -1,0 +1,63 @@
+{
+  "_説明": "Wordマニュアルとサイトの記事の対応表。tools/import_docx.py が使う。level: 1=見出し1で分割, 2=見出し2で分割, 0=ファイル全体で1記事",
+  "kaitori": {
+    "file": "買取査定マニュアル_改訂版.docx",
+    "source": "買取査定マニュアル（2026年11月11日 改訂版）",
+    "level": 1,
+    "map": {
+      "はじめに 使い方と全体の流れ": ["kaitori-hajimeni", "flow"],
+      "1 買取の接客": ["kaitori-sekkyaku", "flow"],
+      "2 買取ガイダンス": ["kaitori-guidance", "flow"],
+      "3 買取準備": ["kaitori-junbi", "flow"],
+      "4 素体の状態別ランク査定基準": ["rank-sotai", "rank"],
+      "5 PSAの状態別ランク査定基準": ["rank-psa", "rank"],
+      "6 BOXの状態別ランク査定基準": ["rank-box", "rank"],
+      "7 POSと相場サイトの使い方": ["price-pos-souba", "price"],
+      "8 真贋鑑別手順": ["shingan-tejun", "shingan"],
+      "9 真贋機材の使い方 ブラックライト": ["shingan-blacklight", "shingan"],
+      "10 再シュリンクの持ち込み事例": ["shingan-reshrink", "shingan"],
+      "11 高額カード査定フロー": ["kougaku-flow", "after"],
+      "12 買取後の商品管理と引き継ぎ": ["after-kanri", "after"],
+      "13 商品の破損が発生した場合": ["trouble-hason", "after"],
+      "14 買取後の偽物や再シュリンク疑いへの対応": ["trouble-nisemono", "after"],
+      "付録 査定記録票": ["form-satei", "forms"],
+      "付録 現場導入時の確認欄": ["form-dounyu", "forms"],
+      "付録 マニュアルの管理と更新履歴": ["manual-rireki", "forms"]
+    }
+  },
+  "recore": {
+    "file": "現場実務_RECORE.docx",
+    "source": "TCG専門店 現場実務・詳細完全マニュアル",
+    "level": 2, "cat": "recore", "prefix": "recore"
+  },
+  "taikai": {
+    "file": "大会運営_プレイスペース規約.docx",
+    "source": "TCG公認大会運営・フロア管理・プレイスペース利用規約",
+    "level": 2, "cat": "taikai", "prefix": "taikai"
+  },
+  "bouhan": {
+    "file": "防犯_安全管理.docx",
+    "source": "防犯・安全管理マニュアル",
+    "level": 2, "cat": "bouhan", "prefix": "bouhan"
+  },
+  "unei": {
+    "file": "店舗運営_買取業務.docx",
+    "source": "店舗運営・買取業務マニュアル",
+    "level": 2, "cat": "unei", "prefix": "unei"
+  },
+  "open": {
+    "file": "オープン準備チェックリスト.docx",
+    "source": "トレぴ オープン準備チェックリスト",
+    "level": 0, "cat": "daily", "id": "daily-open", "title": "オープン準備チェックリスト"
+  },
+  "close": {
+    "file": "閉店チェックリスト.docx",
+    "source": "閉店チェックリスト",
+    "level": 0, "cat": "daily", "id": "daily-close", "title": "閉店チェックリスト"
+  },
+  "oripa": {
+    "file": "オリパ業務標準マニュアル_V7.docx",
+    "source": "オリパ作成・封入・在庫管理 業務標準マニュアル V7",
+    "level": 2, "cat": "oripa", "prefix": "oripa"
+  }
+}
